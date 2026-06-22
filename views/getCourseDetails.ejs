@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Courses</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            --clr-bg-page:        #e8e4dd;
+            --clr-bg-header:      #ffffff;
+            --clr-bg-card:        #ffffff;
+            --clr-bg-input:       #f6f4f0;
+
+            --clr-teal-50:        #E1F5EE;
+            --clr-teal-100:       #9FE1CB;
+            --clr-teal-400:       #1D9E75;
+            --clr-teal-600:       #0F6E56;
+            --clr-teal-800:       #085041;
+
+            --clr-purple-50:      #EEEDFE;
+            --clr-purple-100:     #CECBF6;
+            --clr-purple-200:     #AFA9EC;
+            --clr-purple-600:     #534AB7;
+            --clr-purple-800:     #3C3489;
+
+            --clr-coral-50:       #FAECE7;
+            --clr-coral-100:      #F5C4B3;
+            --clr-coral-600:      #993C1D;
+            --clr-coral-800:      #712B13;
+
+            --clr-gray-50:        #F1EFE8;
+            --clr-gray-100:       #D3D1C7;
+            --clr-gray-400:       #888780;
+            --clr-gray-600:       #5F5E5A;
+            --clr-gray-900:       #2C2C2A;
+
+            --clr-text-primary:   #1a1a18;
+            --clr-text-secondary: #5F5E5A;
+            --clr-text-muted:     #888780;
+
+            --clr-border-default: rgba(0,0,0,0.08);
+            --clr-border-hover:   rgba(0,0,0,0.15);
+
+            --radius-card:   20px;
+            --radius-badge:  7px;
+            --radius-btn:    9px;
+            --transition:    0.22s ease;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--clr-bg-page);
+            min-height: 100vh;
+            color: var(--clr-text-primary);
+        }
+
+        /* ── Header ── */
+        .dashboard-header {
+            background: var(--clr-bg-header);
+            border-bottom: 1px solid var(--clr-border-default);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .dashboard-header h1 {
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--clr-teal-600);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dashboard-header h1::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--clr-teal-400);
+            flex-shrink: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-home {
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--clr-text-secondary);
+            padding: 6px 16px;
+            border: 1px solid var(--clr-border-default);
+            border-radius: var(--radius-btn);
+            transition:
+                color        var(--transition),
+                background   var(--transition),
+                border-color var(--transition),
+                transform    0.12s ease;
+        }
+
+        .btn-home:hover {
+            color: var(--clr-teal-600);
+            background: var(--clr-teal-50);
+            border-color: var(--clr-teal-100);
+        }
+
+        .btn-home:active {
+            transform: scale(0.97);
+        }
+
+        /* ── Grid ── */
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+            padding: 2.5rem 2.5rem 3.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: var(--clr-bg-card);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--clr-border-default);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition:
+                border-color var(--transition),
+                transform    var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--clr-border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Card strip header via ::before */
+        .card::before {
+            content: 'Course';
+            display: block;
+            padding: 0.85rem 1.6rem;
+            background: var(--clr-teal-50);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--clr-teal-800);
+            border-bottom: 1px solid var(--clr-teal-100);
+        }
+
+        /* ── Card rows ── */
+        .card p {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.8rem 1.6rem;
+            font-size: 13.5px;
+            color: var(--clr-text-primary);
+            border-bottom: 1px solid var(--clr-border-default);
+            transition: background var(--transition);
+        }
+
+        .card p:hover {
+            background: var(--clr-gray-50);
+        }
+
+        .card p:last-of-type {
+            border-bottom: none;
+        }
+
+        /* ── Label pills ── */
+        .card .label {
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--clr-purple-800);
+            background: var(--clr-purple-50);
+            padding: 3px 9px;
+            border-radius: var(--radius-badge);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Value text */
+        .card p > *:last-child {
+            font-weight: 500;
+            text-align: right;
+            word-break: break-word;
+            color: var(--clr-text-primary);
+        }
+
+        /* ── Card action buttons ── */
+        .card > a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            padding: 11px 1.6rem;
+            transition:
+                background    var(--transition),
+                color         var(--transition),
+                box-shadow    var(--transition),
+                transform     0.12s ease;
+        }
+
+        /* Update — teal */
+        .card > a:nth-of-type(1) {
+            background: var(--clr-teal-600);
+            color: #ffffff;
+            border-top: 1px solid var(--clr-border-default);
+        }
+
+        .card > a:nth-of-type(1):hover {
+            background: var(--clr-teal-800);
+            box-shadow: 0 4px 16px rgba(15,110,86,0.25);
+        }
+
+        /* Delete — coral/red */
+        .card > a:nth-of-type(2) {
+            background: var(--clr-coral-50);
+            color: var(--clr-coral-800);
+            border-top: 1px solid var(--clr-coral-100);
+        }
+
+        .card > a:nth-of-type(2):hover {
+            background: var(--clr-coral-100);
+            color: var(--clr-coral-600);
+        }
+
+        .card > a:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        /* ── Empty state (when no courses) ── */
+        .dashboard-content:empty::after {
+            content: 'No courses found.';
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 15px;
+            color: var(--clr-text-muted);
+            padding: 4rem 2rem;
+            border: 1px dashed var(--clr-gray-100);
+            border-radius: var(--radius-card);
+            background: var(--clr-bg-card);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .dashboard-header {
+                padding: 0 1.25rem;
+            }
+
+            .dashboard-header h1 {
+                font-size: 10.5px;
+            }
+
+            .dashboard-content {
+                padding: 1.5rem 1rem 2.5rem;
+                gap: 1rem;
+                grid-template-columns: 1fr;
+            }
+
+            .card p {
+                flex-direction: column;
+                gap: 0.4rem;
+                padding: 0.75rem 1.25rem;
+            }
+
+            .card p > *:last-child {
+                text-align: left;
+            }
+
+            .card::before,
+            .card > a {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-header">
+        <h1>ALL COURSE DETAILS</h1>
+
+        <div class="header-actions">
+            <a href="/" class="btn-home">HOME</a>
+        </div>
+    </div>
+
+    <div class="dashboard-content">
+        <% allCoursedetails.forEach((element)=> { %>
+
+            <div class="card">
+
+                <p><span class="label">Course Name:</span> <%= element.CourseName %></p>
+
+                <p><span class="label">Course Duration:</span> <%= element.CourseDuration %></p>
+
+                <p><span class="label">Course Trainer:</span> <%= element.TrainerName %></p>
+
+                <p><span class="label">Course Fee:</span> <%= element.FessOfCourse %></p>
+
+                <p><span class="label">Mode of Course:</span> <%= element.ModeofCourse %></p>
+
+                <p><span class="label">Version:</span> <%= element.__v %></p>
+
+                <a href="/updateCourse/<%=element._id%>">Update Course</a>
+
+                <a href="/DeleteCourse/<%= element._id %>">Delete Course</a>
+
+            </div>
+
+        <% }) %>
+    </div>
+
+</body>
+</html>

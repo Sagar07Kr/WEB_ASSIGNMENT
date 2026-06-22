@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --clr-bg-page:      #f0ede8;
+    --clr-bg-card:      #ffffff;
+    --clr-bg-input:     #f8f7fe;
+
+    --clr-purple-50:    #EEEDFE;
+    --clr-purple-200:   #AFA9EC;
+    --clr-purple-400:   #7F77DD;
+    --clr-purple-600:   #534AB7;
+    --clr-purple-800:   #3C3489;
+    --clr-purple-900:   #26215C;
+
+    --clr-text-primary:   #2e2a55;
+    --clr-text-secondary: #7a748f;
+    --clr-text-placeholder: #b0accc;
+
+    --clr-border-input:   #e2dff5;
+    --clr-border-focus:   var(--clr-purple-400);
+    --clr-focus-ring:     rgba(127, 119, 221, 0.18);
+
+    --radius-input: 10px;
+    --radius-card:  20px;
+    --radius-btn:   10px;
+
+    --transition-base: 0.2s ease;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--clr-bg-page);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    color: var(--clr-text-primary);
+  }
+
+  main {
+    width: 100%;
+    max-width: 460px;
+  }
+
+  /* ── Card ── */
+  form {
+    background: var(--clr-bg-card);
+    border-radius: var(--radius-card);
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    padding: 2.75rem 2.25rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ── Heading ── */
+  form h2 {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clr-purple-600);
+    margin-bottom: 8px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--clr-purple-50);
+  }
+
+  /* ── Inputs ── */
+  form input[type="text"],
+  form input[type="number"] {
+    width: 100%;
+    padding: 11px 16px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 400;
+    color: var(--clr-text-primary);
+    background: var(--clr-bg-input);
+    border: 1.5px solid var(--clr-border-input);
+    border-radius: var(--radius-input);
+    outline: none;
+    transition:
+      border-color var(--transition-base),
+      background   var(--transition-base),
+      box-shadow   var(--transition-base);
+  }
+
+  form input[type="number"]::-webkit-inner-spin-button,
+  form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  form input::placeholder {
+    color: var(--clr-text-placeholder);
+    font-size: 13.5px;
+  }
+
+  form input:hover {
+    border-color: var(--clr-purple-200);
+    background: #fdfcff;
+  }
+
+  form input:focus {
+    border-color: var(--clr-border-focus);
+    background: var(--clr-bg-card);
+    box-shadow: 0 0 0 4px var(--clr-focus-ring);
+  }
+
+  form input:valid:not(:placeholder-shown) {
+    border-color: #9FE1CB;
+    background: #f5fdf9;
+  }
+
+  /* ── Submit Button ── */
+  form button[type="submit"] {
+    margin-top: 6px;
+    width: 100%;
+    padding: 13px 24px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: var(--clr-purple-600);
+    border: none;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    transition:
+      background  var(--transition-base),
+      transform   0.12s ease,
+      box-shadow  var(--transition-base);
+    position: relative;
+    overflow: hidden;
+  }
+
+  form button[type="submit"]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.2s ease;
+  }
+
+  form button[type="submit"]:hover {
+    background: var(--clr-purple-800);
+    box-shadow: 0 4px 18px rgba(83, 74, 183, 0.30);
+  }
+
+  form button[type="submit"]:active {
+    transform: scale(0.975);
+    background: var(--clr-purple-900);
+    box-shadow: none;
+  }
+
+  form button[type="submit"]:focus-visible {
+    outline: 3px solid var(--clr-focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 500px) {
+    form {
+      padding: 2rem 1.4rem 1.75rem;
+      border-radius: 16px;
+    }
+
+    form input[type="text"],
+    form input[type="number"] {
+      font-size: 14px;
+      padding: 10px 14px;
+    }
+  }
+</style>
+
+
+</head>
+<body>
+
+    <main>
+        <form action="/createCourse" method="POST">
+            <h2>ADD COURSE</h2>
+
+            <input type="text" name="CourseName" placeholder="Enter Course Name" required>
+            <input type="number" name="CourseDuration" placeholder="Enter Course Duration" required>
+            <input type="text" name="TrainerName" placeholder="Enter Trainer Name" required>
+            <input type="number" name="FessOfCourse" placeholder="Enter Fees Of Course" required>
+            <input type="text" name="ModeofCourse" placeholder="Enter Mode of Course" required>
+
+            <button type="submit">ADD COURSE</button>
+        </form>
+    </main>
+    
+</body>
+</html>
