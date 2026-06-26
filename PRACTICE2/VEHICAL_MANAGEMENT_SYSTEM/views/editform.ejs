@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>EDIT THE DETAILS</h1>
+
+    <form action="/update/<%=data._id%>"  method="post">
+        <input type="text" name="name" value="<%=data.name%>">
+        <input type="number" name="type" value="<%=data.type%>">
+        <input type="text" name="model" value="<%=data.model%>">
+        <input type="number" name="price" value="<%=data.price%>">
+        <button type="submit">SAVE</button>
+    </form>
+</body>
+</html>

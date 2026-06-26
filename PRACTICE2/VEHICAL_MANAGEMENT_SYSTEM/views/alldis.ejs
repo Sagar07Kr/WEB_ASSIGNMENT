@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>ALL Vehical LISt</h1>
+    <a href="/">HOME</a>
+
+    <div>
+        <% data.forEach((element) => {%>
+            <div>
+           <p> <%=element.name%></p>
+           <p> <%=element.type%></p>
+           <p> <%=element.model%></p>
+           <p> <%=element.price%></p>
+           <a href="/edit/<%=element._id%>">EDIT</a>
+           <a href="/delete/<%=element._id%>">DELETE</a>
+            </div>
+        <%})%>
+    </div>
+</body>
+</html>

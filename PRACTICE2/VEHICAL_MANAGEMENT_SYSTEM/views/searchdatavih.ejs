@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SEARCHED VIHECAL</h1>
+    <a href="/">HOME</a>
+    <div>
+        <% data.forEach((elem)=>{%>
+
+            <p> <%=elem.name%></p>
+            <p> <%=elem.type%></p>
+            <p> <%=elem.model%></p>
+            <p> <%=elem.price%></p>
+
+        <%})%>
+    </div>
+</body>
+</html>
