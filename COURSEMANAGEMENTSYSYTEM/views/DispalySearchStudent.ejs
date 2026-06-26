@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            /* Page */
+            --clr-bg-page:        #edeae4;
+            --clr-bg-card:        #ffffff;
+            --clr-bg-header:      #ffffff;
+
+            /* Teal accent ramp */
+            --clr-teal-50:        #E1F5EE;
+            --clr-teal-100:       #9FE1CB;
+            --clr-teal-400:       #1D9E75;
+            --clr-teal-600:       #0F6E56;
+            --clr-teal-800:       #085041;
+
+            /* Purple ramp (labels) */
+            --clr-purple-50:      #EEEDFE;
+            --clr-purple-400:     #7F77DD;
+            --clr-purple-600:     #534AB7;
+            --clr-purple-800:     #3C3489;
+
+            /* Gray ramp */
+            --clr-gray-50:        #F1EFE8;
+            --clr-gray-100:       #D3D1C7;
+            --clr-gray-400:       #888780;
+            --clr-gray-600:       #5F5E5A;
+            --clr-gray-800:       #444441;
+            --clr-gray-900:       #2C2C2A;
+
+            /* Text */
+            --clr-text-primary:   #1c1c1a;
+            --clr-text-secondary: #5F5E5A;
+            --clr-text-muted:     #888780;
+
+            /* Borders */
+            --clr-border-default: rgba(0,0,0,0.08);
+            --clr-border-hover:   rgba(0,0,0,0.16);
+
+            /* Misc */
+            --radius-card:   20px;
+            --radius-badge:  8px;
+            --radius-btn:    10px;
+            --transition:    0.22s ease;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--clr-bg-page);
+            min-height: 100vh;
+            color: var(--clr-text-primary);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Header ── */
+        .top-header {
+            background: var(--clr-bg-header);
+            border-bottom: 1px solid var(--clr-border-default);
+            padding: 0 2.5rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .top-header h1 {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--clr-teal-600);
+        }
+
+        .top-header a {
+            font-size: 12.5px;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--clr-text-secondary);
+            padding: 7px 16px;
+            border: 1px solid var(--clr-border-default);
+            border-radius: var(--radius-btn);
+            transition:
+                color        var(--transition),
+                border-color var(--transition),
+                background   var(--transition),
+                transform    0.12s ease;
+        }
+
+        .top-header a:hover {
+            color: var(--clr-teal-600);
+            border-color: var(--clr-teal-100);
+            background: var(--clr-teal-50);
+        }
+
+        .top-header a:active {
+            transform: scale(0.97);
+        }
+
+        /* ── Main layout ── */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 3.5rem 1.5rem;
+        }
+
+        /* ── Detail card ── */
+        .card {
+            background: var(--clr-bg-card);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--clr-border-default);
+            width: 100%;
+            max-width: 520px;
+            overflow: hidden;
+            transition: border-color var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--clr-border-hover);
+        }
+
+        /* Card intro strip */
+        .card::before {
+            content: 'Course Details';
+            display: block;
+            padding: 1.1rem 2rem;
+            background: var(--clr-teal-50);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--clr-teal-800);
+            border-bottom: 1px solid var(--clr-teal-100);
+        }
+
+        /* Rows */
+        .card p {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 1.05rem 2rem;
+            font-size: 14.5px;
+            border-bottom: 1px solid var(--clr-border-default);
+            transition: background var(--transition);
+        }
+
+        .card p:last-child {
+            border-bottom: none;
+        }
+
+        .card p:hover {
+            background: var(--clr-gray-50);
+        }
+
+        /* Label pill */
+        .card .label {
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--clr-purple-800);
+            background: var(--clr-purple-50);
+            padding: 3px 10px;
+            border-radius: var(--radius-badge);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Value text */
+        .card p > *:last-child {
+            color: var(--clr-text-primary);
+            font-weight: 500;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        /* ── Not found state ── */
+        .main-content > h2 {
+            margin-top: 4rem;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--clr-text-secondary);
+            letter-spacing: 0.01em;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border: 1px dashed var(--clr-gray-100);
+            border-radius: var(--radius-card);
+            background: var(--clr-bg-card);
+            width: 100%;
+            max-width: 520px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 560px) {
+            .top-header {
+                padding: 0 1.25rem;
+            }
+
+            .card::before {
+                padding: 1rem 1.4rem;
+            }
+
+            .card p {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 1.4rem;
+            }
+
+            .card p > *:last-child {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-header">
+        <h1>COURSE DEATILS</h1>
+        <a href="/">HOME PAGE</a>
+    </div>
+
+    <div class="main-content">
+        <% if(dataOfSearchedStudent){ %>
+
+        <div class="card">
+            <p><span class="label">Name:</span>
+                <%= dataOfSearchedStudent.CourseName %>
+            </p>
+
+            <p><span class="label">Duration:</span>
+                <%= dataOfSearchedStudent.CourseDuration %>
+            </p>
+
+            <p><span class="label">Trainer:</span>
+                <%= dataOfSearchedStudent.TrainerName %>
+            </p>
+
+            <p><span class="label">Fees:</span>
+                <%= dataOfSearchedStudent.FessOfCourse %>
+            </p>
+
+            <p><span class="label">Mode:</span>
+                <%= dataOfSearchedStudent.ModeofCourse %>
+            </p>
+        </div>
+
+        <% } else { %>
+
+        <h2>Course Not Found</h2>
+
+        <% } %>
+    </div>
+
+</body>
+</html>

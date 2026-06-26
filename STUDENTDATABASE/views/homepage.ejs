@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Section</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 34px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            transition: 0.3s ease;
+            display: block;
+        }
+
+        a:nth-child(1) {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+        }
+
+        a:nth-child(2) {
+            background: linear-gradient(135deg, #ff512f, #dd2476);
+        }
+
+        a:nth-child(3) {
+            background: linear-gradient(135deg, #7f00ff, #e100ff);
+        }
+
+        a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>STUDENTS DASHBOARD</h1>
+        
+        <div class="links">
+            <a href="/getdata.student">VIEW STUDENTS DETAILS</a>
+            <a href="/addstudent">ADD STUDENT</a>
+            <a href="">SEARCH STUDENT</a>
+        </div>
+    </div>
+
+</body>
+</html>

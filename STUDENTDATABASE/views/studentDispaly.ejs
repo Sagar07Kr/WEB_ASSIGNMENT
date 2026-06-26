@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            min-height: 100vh;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            padding: 30px;
+            color: white;
+        }
+
+        .top-bar{
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1{
+            font-size: 36px;
+            letter-spacing: 1px;
+        }
+
+        .home-btn{
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .home-btn:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .container{
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card{
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            transition: 0.3s ease;
+        }
+
+        .card:hover{
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+        }
+
+        .card p{
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .label{
+            color: #ffd166;
+            font-weight: bold;
+        }
+
+        @media(max-width: 600px){
+            .top-bar{
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            h1{
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <h1>STUDENT DASHBOARD</h1>
+        <a href="/" class="home-btn">🏠 HOME</a>
+    </div>
+
+    <div class="container">
+
+        <% alldata.forEach((element)=> { %>
+
+            <div class="card">
+                <p><span class="label">Name:</span> <%= element.name %></p>
+                <p><span class="label">Age:</span> <%= element.age %></p>
+                <p><span class="label">City:</span> <%= element.city %></p>
+                <p><span class="label">Email:</span> <%= element.email %></p>
+                <p><span class="label">Course:</span> <%= element.course %></p>
+                <p><span class="label">IP Address:</span> <%= element.ip %></p>
+                <p><span class="label">Version:</span> <%= element.__v %></p>
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</body>
+</html>

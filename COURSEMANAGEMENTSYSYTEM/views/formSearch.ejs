@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            --clr-bg-page:        #e8e4dd;
+            --clr-bg-card:        #ffffff;
+            --clr-bg-header:      #ffffff;
+            --clr-bg-input:       #f6f4f0;
+
+            --clr-teal-50:        #E1F5EE;
+            --clr-teal-100:       #9FE1CB;
+            --clr-teal-400:       #1D9E75;
+            --clr-teal-600:       #0F6E56;
+            --clr-teal-800:       #085041;
+
+            --clr-purple-50:      #EEEDFE;
+            --clr-purple-200:     #AFA9EC;
+            --clr-purple-600:     #534AB7;
+            --clr-purple-800:     #3C3489;
+
+            --clr-gray-50:        #F1EFE8;
+            --clr-gray-100:       #D3D1C7;
+            --clr-gray-400:       #888780;
+            --clr-gray-600:       #5F5E5A;
+            --clr-gray-900:       #2C2C2A;
+
+            --clr-text-primary:   #1a1a18;
+            --clr-text-secondary: #5F5E5A;
+            --clr-text-muted:     #888780;
+
+            --clr-border-default: rgba(0,0,0,0.08);
+            --clr-border-hover:   rgba(0,0,0,0.15);
+            --clr-focus-ring:     rgba(29,158,117,0.18);
+
+            --radius-card:  22px;
+            --radius-input: 11px;
+            --radius-btn:   11px;
+            --radius-nav:   9px;
+            --transition:   0.22s ease;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--clr-bg-page);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--clr-text-primary);
+        }
+
+        /* ── Header ── */
+        .dashboard-header {
+            background: var(--clr-bg-header);
+            border-bottom: 1px solid var(--clr-border-default);
+            height: 62px;
+            display: flex;
+            align-items: center;
+            padding: 0 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Decorative brand dot */
+        .header-nav::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--clr-teal-400);
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--clr-text-secondary);
+            padding: 6px 15px;
+            border: 1px solid var(--clr-border-default);
+            border-radius: var(--radius-nav);
+            transition:
+                color        var(--transition),
+                background   var(--transition),
+                border-color var(--transition),
+                transform    0.12s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--clr-teal-600);
+            background: var(--clr-teal-50);
+            border-color: var(--clr-teal-100);
+        }
+
+        .nav-link:active {
+            transform: scale(0.97);
+        }
+
+        /* ── Main ── */
+        .dashboard-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+        }
+
+        /* ── Card ── */
+        .glass-card {
+            background: var(--clr-bg-card);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--clr-border-default);
+            padding: 3rem 2.5rem 2.75rem;
+            width: 100%;
+            max-width: 480px;
+            transition: border-color var(--transition);
+        }
+
+        .glass-card:hover {
+            border-color: var(--clr-border-hover);
+        }
+
+        /* ── Heading ── */
+        .glass-card h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--clr-text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.35rem;
+        }
+
+        /* Subtle sub-rule under heading */
+        .glass-card h1::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 3px;
+            border-radius: 99px;
+            background: var(--clr-teal-400);
+            margin-top: 10px;
+            margin-bottom: 2rem;
+        }
+
+        /* ── Form ── */
+        .glass-card form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* ── Input ── */
+        .glass-card form input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--clr-text-primary);
+            background: var(--clr-bg-input);
+            border: 1.5px solid var(--clr-gray-100);
+            border-radius: var(--radius-input);
+            outline: none;
+            transition:
+                border-color var(--transition),
+                background   var(--transition),
+                box-shadow   var(--transition);
+        }
+
+        .glass-card form input[type="text"]::placeholder {
+            color: var(--clr-text-muted);
+            font-size: 13px;
+            letter-spacing: 0.04em;
+        }
+
+        .glass-card form input[type="text"]:hover {
+            border-color: var(--clr-gray-400);
+            background: #f9f8f4;
+        }
+
+        .glass-card form input[type="text"]:focus {
+            border-color: var(--clr-teal-400);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px var(--clr-focus-ring);
+        }
+
+        .glass-card form input[type="text"]:valid:not(:placeholder-shown) {
+            border-color: var(--clr-teal-100);
+            background: var(--clr-teal-50);
+        }
+
+        /* ── Button ── */
+        .glass-card form button[type="submit"] {
+            width: 100%;
+            padding: 13px 24px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: var(--clr-teal-600);
+            border: none;
+            border-radius: var(--radius-btn);
+            cursor: pointer;
+            margin-top: 4px;
+            transition:
+                background var(--transition),
+                box-shadow  var(--transition),
+                transform   0.12s ease;
+        }
+
+        .glass-card form button[type="submit"]:hover {
+            background: var(--clr-teal-800);
+            box-shadow: 0 4px 20px rgba(15,110,86,0.28);
+        }
+
+        .glass-card form button[type="submit"]:active {
+            transform: scale(0.975);
+            background: #053d2d;
+            box-shadow: none;
+        }
+
+        .glass-card form button[type="submit"]:focus-visible {
+            outline: 3px solid var(--clr-focus-ring);
+            outline-offset: 2px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 520px) {
+            .dashboard-header {
+                padding: 0 1.25rem;
+            }
+
+            .glass-card {
+                padding: 2.25rem 1.5rem 2rem;
+                border-radius: 16px;
+            }
+
+            .glass-card h1 {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="dashboard-header">
+        <nav class="header-nav">
+            <a href="/" class="nav-link">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="glass-card">
+            <h1>Search Course</h1>
+            
+            <form action="/displayCourse" method="POST">
+                <input type="text" name="CourseName" placeholder="ENTER NAME OF COURSE" required>
+                <button type="submit">Search Course</button>
+            </form>
+        </div>
+    </main>
+    
+</body>
+</html>
